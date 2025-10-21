@@ -1,131 +1,68 @@
-# ReachInBox Assignment
+Even though the assignment is hard, we encourage you to complete it as much as you can and give it a try.
 
-## Server
-The assignment is to build a tool that will parse and check the emails in a Google and Outlook email ID, and
-respond to the e-mails based on the context using AI. Use BullMQ as the tasks scheduler
-This is a server-based application built with Node.js and Express. It uses various packages such as  openai for AI functionalities, googleapis for Google APIs, and axios for HTTP requests and bullMQ to process queues.
-![image](https://github.com/shraddha-gawde/reachInbox-assignment/assets/101090200/0237adc4-c817-4d79-9b09-fc0b27f34e6e)
+Reference document: https://dour-blade-da4.notion.site/ReachInbox-Assignment-Reference-Document-290573730b5a80cca1a9fce2608c6177?source=copy_link
 
+Assignment - Associate Backend Engineer
+About Company:
+ReachInbox is transforming cold outreach with our revolutionary AI-driven platform. Our all-in-one solution empowers businesses to effortlessly find, enrich, and engage high-intent leads through multi-channel outreach on Twitter, LinkedIn, email, and phone. With just a single prompt, ReachInbox springs into action, prospecting and verifying leads, crafting personalized sequences, and notifying businesses of responsive prospects. Imagine being part of an AI-powered growth team that consistently generates top-tier leads. ReachInbox is more than a tool; it's your growth partner.
+We are looking for passionate and innovative individuals to join our team and help us continue to redefine the future of lead generation and business growth.
+Assignment - Build a Feature-Rich Onebox for Emails
+Problem Statement
+We are looking for the best candidates who can build a highly functional onebox email aggregator with advanced features, similar to Reachinbox. Your task is to create a backend and frontend system that synchronizes multiple IMAP email accounts in real-time and provides a seamless, searchable, and AI-powered experience.
+Your submission will be judged based on the number of features you successfully implement. We will maintain a leaderboard on GitHub to track progress, ranking submissions based on feature completion and quality.
+Requirements & Features
+For the Backend Engineering assignment, you will begin by building and showcasing the listed features using Postman. If you're able to successfully complete point 5, you will then integrate and display all the features on the frontend. Achieving this will demonstrate your ability to work end-to-end. Lastly, completing point 6 will secure you a direct invitation to the final interview.
+Use Language: Typescript, Node.js runtime.
+1. Real-Time Email Synchronization
+Sync multiple IMAP accounts in real-time - minimum 2
+Fetch at least the last 30 days of emails
+Use persistent IMAP connections (IDLE mode) for real-time updates (No cron jobs!).
+2. Searchable Storage using Elasticsearch
+Store emails in a locally hosted Elasticsearch instance (use Docker).
+Implement indexing to make emails searchable.
+Support filtering by folder & account.
+3. AI-Based Email Categorization
+Implement an AI model to categorize emails into the following labels:
+Interested
+Meeting Booked
+Not Interested
+Spam
+Out of Office
+4. Slack & Webhook Integration
+Send Slack notifications for every new Interested email.
+Trigger webhooks (use webhook.site as the webhook URL) for external automation when an email is marked as Interested.
+5. Frontend Interface
+Build a simple UI to display emails, filter by folder/account, and show AI categorization.
+Basic email search functionality powered by Elasticsearch.
+6. AI-Powered Suggested Replies (Direct invitation to final interview)
+Store the product and outreach agenda in a vector database.
+Use RAG (Retrieval-Augmented Generation) with any LLM to suggest replies.
+Example:
+Training data: "I am applying for a job position. If the lead is interested, share the meeting booking link: https://cal.com/example"
+Email received:"Hi, Your resume has been shortlisted. When will be a good time for you to attend the technical interview?"
+AI Reply Suggestion:"Thank you for shortlisting my profile! I'm available for a technical interview. You can book a slot here: https://cal.com/example"
 
-## deployed links :
-frontend : [Link](https://reach-inbox-assignment.vercel.app/)
-<br>
-Backend : [Link](https://reachinbox-assignment-4rf9.onrender.com)
-<br>
-API documentation build with postman documentation - [Link](https://documenter.getpostman.com/view/31971527/2sA35D43FE)
-<br>
-Video link for demo of this Application - [Link](https://www.loom.com/share/51a86498fb774c6ba1602c0a2625cebe?sid=bf5e9f0d-23f8-4d54-a89b-b0d3d3412c35)
+How and Where to submit the assignment:
+Create a private GitHub repository with your implementation.
+**Grant access to the user**: Mitrajit and sarvagya-chaudhary
 
-
-
-# technologies used:
-- Node.js
-- Express.js
-- OpenAI
-- Google APIs
-- Microsoft Graph API
-# npm packages used
-- dotenv
-- Axios
-- bullMQ
-- google-auth-library
-- ioredis
-- @microsoft/microsoft-graph-client
-- @azure/msal-node
-
-<br>
-
-## Installation setup
-1. Clone the repository to your local machine
-bash
-git clone https://github.com/shraddha-gawde/reachInbox-assignment.git
-
-2. Navigate to the root directory of the project directory :
-bash 
-cd server
-
-3. Run npm install to install all the dependencies
-4. Create a .env file in the root directory with the same IDs as specified in the documentation.
-
-## Running the server
-1. To start the server, run the following command in your terminal
-bash
-npm start
-
-This will start the server at localhost:5000 (or whatever port you have specified).
-or we can use backend deployed link also.
-
-2. To start the worker.js file, run the following command in your terminal
-bash
-npm run server
+Push your code and update the README with setup instructions, architecture details, and feature implementation.
+Provide a demo video showcasing the functionalities. (Do not exceed 5 mins)
 
 
-## API Endpoints
 
-### For Google's OAuth2.0:
-- https://reachinbox-assignment-4rf9.onrender.com/auth/google - GET for google authentication
-- https://reachinbox-assignment-4rf9.onrender.com/api/mail/userInfo/:email - GET request to view user profile
-- https://reachinbox-assignment-4rf9.onrender.com/api/mail/allDrafts/:email - GET request to view all drafts mail.
-- https://reachinbox-assignment-4rf9.onrender.com/api/mail/read/:email/message/:message - GET request to read a specific email(using id).
-- https://reachinbox-assignment-4rf9.onrender.com/api/mail/list/:email - GET request to get a list of mails.
-- https://reachinbox-assignment-4rf9.onrender.com/api/mail/sendMail - POST request send mail with label.
-
-{
-    "from":"sendersmail@gmail.com",
-    "to":"recieversmail@gmail.com",
-    "label":"interested/not-interested/more-information"
-}
-
-- https://reachinbox-assignment-4rf9.onrender.com/api/mail/sendone/:id - POST request to send a single mail for particular ID.
-
-{
-    "from":"sendersmail@gmail.com",
-    "to":"recieversmail@gmail.com"
-}
-
-- - https://reachinbox-assignment-4rf9.onrender.com/api/mail/sendMultiple/:id - POST request to send a single mail for particular ID.
- 
-{
-    "from":"sendersmail@gmail.com",
-    "to":["demo@gmail.com","demo@gmail.com", "demo@gmail.com"]
-}
-
-![image](https://github.com/shraddha-gawde/reachInbox-assignment/assets/101090200/e0bbbdce-1ec4-46c4-8335-e049f7f5b5c7)
-
-### For microsoft azur's OAuth2.0:
-
-- https://reachinbox-assignment-4rf9.onrender.com/outlook/signin - GET for micosoft azur authentication for outlook
-- https://reachinbox-assignment-4rf9.onrender.com/outlook/callbak - GET for micosoft azur getting access token
-- https://reachinbox-assignment-4rf9.onrender.com/outlook/profile - GET request to get profile data for particular user
-- https://reachinbox-assignment-4rf9.onrender.com/outlook/all-Mails/{email} - GET request for get ist of all mails of outllok user
-- https://reachinbox-assignment-4rf9.onrender.com/outlook/{email}/read-Msg/{:message} = GET request to read partivcular mail using messange id
-- https://reachinbox-assignment-4rf9.onrender.com/outlook/{email}/send-Mail - post request for sending mail to another user using outlook
-
-{
-    "from":"sendersmail@gmail.com",
-    "to":"recieversmail@gmail.com"
-     "label":"interested/not-interested/more-information"
-}
-
-- https://reachinbox-assignment-4rf9.onrender.com/outlook/sendone/:email/:id - post request for sending mail to another user using outlook using bullmq
-
-{
-    "from":"sendersmail@gmail.com",
-    "to":"recieversmail@gmail.com"
-}
+NxtWave Submission Form:  https://docs.google.com/forms/d/1QvxBwBnreSLOZ2ThJUj6JA2UMiJcdlMEl0Yg70rrRm8/edit
 
 
-## Sample .env sample:
 
-PORT = ***
-GOOGLE_CLIENT_ID = ***
-GOOGLE_CLIENT_SECRET = ***
-GOOGLE_REDIRECT_URI = ***
-GOOGLE_REFRESH_TOKEN = ***
-OPENAI_SECRECT_KEY = ***
-redis_port = ***
-redis_host = ***
-redis_pass = ***
-AZURE_CLIENT_ID = ***
-AZURE_CLIENT_SECRET = *** 
-AZURE_TENANT_ID = ***
+Evaluation Criteria:
+Feature Completion – The number of features implemented.
+Code Quality & Scalability – Clean, modular, and well-documented code.
+Real-Time Performance – Efficient IMAP sync (no polling!).
+AI Accuracy – Performance of email categorization and suggested replies.
+UX & UI – Frontend usability and smooth user experience.
+Bonus Points for additional features or optimizations.
+Deadline for Task Completion:
+You have a maximum of 48 hours to complete the task. Receiving this assignment means you're already ahead of many candidates. Good luck!
+Note: Do not submit a plagiarized assignment. All GitHub code will be thoroughly reviewed, and any evidence of plagiarism will result in the assignment being rejected.
+Thank you!
